@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CovID 19 Tracking</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+	<div id="app" class="container">
+		<h2 class="pb-2 pt-2">COVID-19 Tracking</h2>
+		<table class="table table-sm table-hover table-bordered table-striped mt-5">
+			<tr class="thead-light">
+				<th>Locations</th>
+				<th class="text-right">Positive</th>
+				<th class="text-right">Negative</th>
+				<th class="text-right">Pending</th>
+				<th class="text-right">Death</th>
+				<th class="text-right">Total</th>
+			</tr>
+			<tr>
+				<td>USA</td>
+				<td class="text-right">{{ usa.positive }}</td>
+				<td class="text-right">{{ usa.negative }}</td>
+				<td class="text-right">{{ usa.pending }}</td>
+				<td class="text-right">{{ usa.death }}</td>
+				<td class="text-right">{{ usa.total }}</td>
+			</tr>
+			<tr>
+				<td>CA</td>
+				<td class="text-right">{{ ca.positive }}</td>
+				<td class="text-right">{{ ca.negative }}</td>
+				<td class="text-right">{{ ca.pending }}</td>
+				<td class="text-right">{{ ca.death }}</td>
+				<td class="text-right">{{ ca.total }}</td>
+			</tr>
+		</table>
+	</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script type="text/javascript">
+	var app = new Vue({
+	  el: '#app',
+	  beforeCreate() {
+	  },
+	  created() {
+	  },
+	  beforeMount() {
+	  	this.getStates();
+	  	this.getCaCount();
+	  },
+	  methods: {
+
+	  	getStates: function() {
+	  		axios
+	  		  .get('https://covidtracking.com/api/us')
+	  		  .then(response => (this.usa = response.data[0]))
+	  		  .catch(error => console.log(error))
+	  	},
+	  	getCaCount: function() {
+	  		axios
+	  		  .get('https://covidtracking.com/api/states/daily')
+	  		  .then(response => (this.ca = this.parseCount(response.data)))
+	  		  .catch(error => console.log(error))
+
+	  	},
+	  	parseCount: function(data) {
+	  		return _.find(data, function(o) {
+	  			return o.state == 'CA'; });
+	  	}
+	  },
+	  data: {
+	    states: '',
+	    ca: {},
+	    usa: {},
+	  }
+	})
+</script>
+</html>
