@@ -21,26 +21,26 @@
 			</tr>
 			<tr>
 				<td>🇺🇸 USA</td>
-				<td class="text-right">{{ usa.positive }}</td>
-				<td class="text-right">{{ usa.negative }}</td>
-				<td class="text-right">{{ usa.pending }}</td>
-				<td class="text-right">{{ usa.death }}</td>
-				<td class="text-right">{{ usa.total }}</td>
+				<td class="text-right">{{ usa.positive | formatNumber }}</td>
+				<td class="text-right">{{ usa.negative | formatNumber }}</td>
+				<td class="text-right">{{ usa.pending | formatNumber }}</td>
+				<td class="text-right">{{ usa.death | formatNumber }}</td>
+				<td class="text-right">{{ usa.total | formatNumber }}</td>
 			</tr>
 			<tr>
 				<td>CA</td>
-				<td class="text-right">{{ ca.positive }}</td>
-				<td class="text-right">{{ ca.negative }}</td>
-				<td class="text-right">{{ ca.pending }}</td>
-				<td class="text-right">{{ ca.death }}</td>
-				<td class="text-right">{{ ca.total }}</td>
+				<td class="text-right">{{ ca.positive | formatNumber}}</td>
+				<td class="text-right">{{ ca.negative | formatNumber }}</td>
+				<td class="text-right">{{ ca.pending | formatNumber }}</td>
+				<td class="text-right">{{ ca.death | formatNumber }}</td>
+				<td class="text-right">{{ ca.total | formatNumber }}</td>
 			</tr>
 			<tr>
 				<td>🇭🇰 Hong Kong</td>
-				<td class="text-right">{{ hk.stats.confirmed }}</td>
+				<td class="text-right">{{ hk.stats.confirmed | formatNumber}}</td>
 				<td></td>
 				<td></td>
-				<td class="text-right">{{ hk.stats.deaths }}</td>
+				<td class="text-right">{{ hk.stats.deaths | formatNumber }}</td>
 				<td class="text-right"></td>
 			</tr>
 		</table>
@@ -89,7 +89,8 @@
 	  	},
 	  	parseCount: function(data, filter) {
 	  		return _.find(data, function(o) {
-	  			return o.state == filter; });
+	  			return o.state == filter; 
+	  		}); 
 	  	}
 	  },
 	  data: {
@@ -97,6 +98,11 @@
 	    ca: {},
 	    usa: {},
 	    hk: {'stats': {}}
+	  },
+	  filters: {
+	  	formatNumber: function(value) {
+	  		return Number(value).toLocaleString();
+	  	}
 	  }
 	})
 </script>
