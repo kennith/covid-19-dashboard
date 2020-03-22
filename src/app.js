@@ -1,6 +1,6 @@
-window.Vue = require('vue');
-window._ = require('lodash');
-window.axios = require('axios');
+const _ = require('lodash');
+const axios = require('axios');
+const Vue = require('vue');
 
 let app = new Vue({
 	el: '#app',
@@ -14,24 +14,21 @@ let app = new Vue({
 		this.getHkCount();
 	},
 	methods: {
-
 		getStates: function() {
-			axios
-			.get('https://covidtracking.com/api/us')
-			.then(response => (this.usa = response.data[0]))
-			.catch(error => console.log(error))
+			axios .get('https://covidtracking.com/api/us')
+				.then(response => (this.usa = response.data[0]))
+				.catch(error => console.log(error))
 		},
 		getCaCount: function() {
-			axios
-			.get('https://covidtracking.com/api/states/daily')
-			.then(response => (this.ca = this.parseCount(response.data, 'CA')))
-			.catch(error => console.log(error))
+			axios .get('https://covidtracking.com/api/states/daily')
+				.then(response => (this.ca = this.parseCount(response.data, 'CA')))
+				.catch(error => console.log(error))
 
 		},
 		getHkCount: function() {
 			axios.get('https://corona.lmao.ninja/jhucsse')
-			.then(response => (this.hk = this.parseLamoCount(response.data, 'Hong Kong')))
-			.catch(error => console.log(error))
+				.then(response => (this.hk = this.parseLamoCount(response.data, 'Hong Kong')))
+				.catch(error => console.log(error))
 		},
 		parseLamoCount: function(data, filter) {
 			return _.find(data, function(o) {
