@@ -12,32 +12,43 @@ let app = new Vue({
 		this.getStates();
 		this.getCaCount();
 		this.getHkCount();
+		this.getItalyCount();
+		this.getJapanCount();
 	},
 	methods: {
 		getStates: function() {
-			axios .get('https://covidtracking.com/api/us')
-				.then(response => (this.usa = response.data[0]))
+			axios .get('https://corona.lmao.ninja/countries/usa')
+				.then(response => (this.usa = response.data))
 				.catch(error => console.log(error))
 		},
 		getCaCount: function() {
-			axios .get('https://covidtracking.com/api/states/daily')
-				.then(response => (this.ca = this.parseCount(response.data, 'CA')))
+			axios .get('https://corona.lmao.ninja/states')
+				.then(response => (this.ca = this.parseCaCount(response.data)))
 				.catch(error => console.log(error))
 
 		},
 		getHkCount: function() {
-			axios.get('https://corona.lmao.ninja/jhucsse')
-				.then(response => (this.hk = this.parseLamoCount(response.data, 'Hong Kong')))
+			axios.get('https://corona.lmao.ninja/countries/Hong%20Kong')
+				.then(response => (this.hk = this.parseLamoCount(response.data)))
 				.catch(error => console.log(error))
 		},
-		parseLamoCount: function(data, filter) {
-			return _.find(data, function(o) {
-				return o.province == 'Hong Kong';
-			})
+		getItalyCount: function() {
+			axios.get('https://corona.lmao.ninja/countries/Italy')
+				.then(response => (this.italy = this.parseLamoCount(response.data)))
+				.catch(error => console.log(error))
 		},
-		parseCount: function(data, filter) {
+		getJapanCount: function() {
+			axios.get('https://corona.lmao.ninja/countries/Japan')
+				.then(response => (this.japan = this.parseLamoCount(response.data)))
+				.catch(error => console.log(error))
+		},
+		parseLamoCount: function(data) {
+			return data;
+		},
+		parseCaCount: function(data, filter) {
+			console.log(data);
 			return _.find(data, function(o) {
-				return o.state == filter; 
+				return o.state == 'California'; 
 			}); 
 		}
 	},
@@ -45,7 +56,9 @@ let app = new Vue({
 		states: '',
 		ca: {},
 		usa: {},
-		hk: {'stats': {}}
+		hk: {},
+		italy: {},
+		japan: {}
 	},
 	filters: {
 		formatNumber: function(value) {

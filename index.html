@@ -14,34 +14,50 @@
 			<tr class="thead-light">
 				<th>Locations</th>
 				<th class="text-right">Positive</th>
-				<th class="text-right">Negative</th>
-				<th class="text-right">Pending</th>
+				<th class="text-right">Critical</th>
+				<th class="text-right">Recovered</th>
 				<th class="text-right">Death</th>
 				<th class="text-right">Total</th>
 			</tr>
 			<tr>
 				<td>🇺🇸 USA</td>
-				<td class="text-right">{{ usa.positive | formatNumber }}</td>
-				<td class="text-right">{{ usa.negative | formatNumber }}</td>
-				<td class="text-right">{{ usa.pending | formatNumber }}</td>
-				<td class="text-right">{{ usa.death | formatNumber }}</td>
-				<td class="text-right">{{ usa.total | formatNumber }}</td>
+				<td class="text-right">{{ usa.active | formatNumber }}</td>
+				<td class="text-right">{{ usa.critical | formatNumber }}</td>
+				<td class="text-right">{{ usa.recovered | formatNumber }}</td>
+				<td class="text-right">{{ usa.deaths | formatNumber }}</td>
+				<td class="text-right">{{ usa.cases | formatNumber }}</td>
 			</tr>
 			<tr>
 				<td>CA</td>
-				<td class="text-right">{{ ca.positive | formatNumber}}</td>
-				<td class="text-right">{{ ca.negative | formatNumber }}</td>
-				<td class="text-right">{{ ca.pending | formatNumber }}</td>
-				<td class="text-right">{{ ca.death | formatNumber }}</td>
-				<td class="text-right">{{ ca.total | formatNumber }}</td>
+				<td class="text-right">{{ ca.active | formatNumber }}</td>
+				<td class="text-right">{{ ca.critical }}</td>
+				<td class="text-right">{{ ca.recovered | formatNumber }}</td>
+				<td class="text-right">{{ ca.deaths | formatNumber }}</td>
+				<td class="text-right">{{ ca.cases | formatNumber }}</td>
 			</tr>
 			<tr>
 				<td>🇭🇰 Hong Kong</td>
-				<td class="text-right">{{ hk.stats.confirmed | formatNumber}}</td>
-				<td></td>
-				<td></td>
-				<td class="text-right">{{ hk.stats.deaths | formatNumber }}</td>
-				<td class="text-right"></td>
+				<td class="text-right">{{ hk.active }}</td>
+				<td class="text-right">{{ hk.critical }}</td>
+				<td class="text-right">{{ hk.recovered }}</td>
+				<td class="text-right">{{ hk.deaths }}</td>
+				<td class="text-right">{{ hk.cases }}</td>
+			</tr>
+			<tr>
+				<td>🇮🇹 Italy</td>
+				<td class="text-right">{{ italy.active | formatNumber }}</td>
+				<td class="text-right">{{ italy.critical | formatNumber }}</td>
+				<td class="text-right">{{ italy.recovered | formatNumber }}</td>
+				<td class="text-right">{{ italy.deaths | formatNumber }}</td>
+				<td class="text-right">{{ italy.cases | formatNumber }}</td>
+			</tr>
+			<tr>
+				<td>🇯🇵 Japan</td>
+				<td class="text-right">{{ japan.active | formatNumber }}</td>
+				<td class="text-right">{{ japan.critical | formatNumber }}</td>
+				<td class="text-right">{{ japan.recovered | formatNumber }}</td>
+				<td class="text-right">{{ japan.deaths | formatNumber }}</td>
+				<td class="text-right">{{ japan.cases | formatNumber }}</td>
 			</tr>
 		</table>
 
@@ -49,7 +65,6 @@
                 <ul>
                   <li>Best for CA <a href="https://www.latimes.com/projects/california-coronavirus-cases-tracking-outbreak/">https://www.latimes.com/projects/california-coronavirus-cases-tracking-outbreak/</a></li>
                   <li><a href="https://corona.lmao.ninja/jhucsse">https://corona.lmao.ninja/jhucsse</a></li>
-                  <li><a href="https://covidtracking.com/api/states/daily">https://covidtracking.com/api/states/daily</a></li>
                 </ul>
 	</div>
 </body>
