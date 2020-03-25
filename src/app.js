@@ -8,21 +8,27 @@ let app = new Vue({
 	},
 	created() {
 	},
-	beforeMount() {
+	mounted() {
 		this.getStates();
 		this.getCaCount();
 		this.getHkCount();
 		this.getItalyCount();
 		this.getJapanCount();
+		this.getLACount();
 	},
 	methods: {
+		getLACount: function() {
+			axios.get('https://corona.lmao.ninja/jhucsse')
+				 .then(response => (this.la = _.find(response.data, function(o) { return o.city == 'Los Angeles'; } ).stats ))
+				 .catch(error => console.log(error));
+		},
 		getStates: function() {
-			axios .get('https://corona.lmao.ninja/countries/usa')
+			axios.get('https://corona.lmao.ninja/countries/usa')
 				.then(response => (this.usa = response.data))
 				.catch(error => console.log(error))
 		},
 		getCaCount: function() {
-			axios .get('https://corona.lmao.ninja/states')
+			axios.get('https://corona.lmao.ninja/states')
 				.then(response => (this.ca = this.parseCaCount(response.data)))
 				.catch(error => console.log(error))
 
@@ -46,10 +52,14 @@ let app = new Vue({
 			return data;
 		},
 		parseCaCount: function(data, filter) {
-			console.log(data);
 			return _.find(data, function(o) {
 				return o.state == 'California'; 
 			}); 
+		},
+		parseCityCount: function(data) {
+			return _.find(data, function(o) {
+				return o.city == 'Los Angeles';
+			})
 		}
 	},
 	data: {
@@ -58,7 +68,9 @@ let app = new Vue({
 		usa: {},
 		hk: {},
 		italy: {},
-		japan: {}
+		japan: {},
+		la: {},
+		jhuData: '',
 	},
 	filters: {
 		formatNumber: function(value) {

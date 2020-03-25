@@ -31,9 +31,17 @@
 				<td>CA</td>
 				<td class="text-right">{{ ca.active | formatNumber }}</td>
 				<td class="text-right">{{ ca.critical }}</td>
-				<td class="text-right">{{ ca.recovered | formatNumber }}</td>
+				<td class="text-right">{{ ca.recovered }}</td>
 				<td class="text-right">{{ ca.deaths | formatNumber }}</td>
 				<td class="text-right">{{ ca.cases | formatNumber }}</td>
+			</tr>
+			<tr>
+				<td>Los Angeles</td>
+				<td class="text-right">{{ la.confirmed | formatNumber }}</td>
+				<td class="text-right">{{ la.critical }}</td>
+				<td class="text-right">{{ la.recovered }}</td>
+				<td class="text-right">{{ la.deaths | formatNumber }}</td>
+				<td class="text-right"></td>
 			</tr>
 			<tr>
 				<td>🇭🇰 Hong Kong</td>
