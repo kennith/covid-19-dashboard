@@ -18,8 +18,8 @@ let app = new Vue({
 	},
 	methods: {
 		getLACount: function() {
-			axios.get('https://corona.lmao.ninja/jhucsse')
-				 .then(response => (this.la = _.find(response.data, function(o) { return o.city == 'Los Angeles'; } ).stats ))
+			axios.get('https://corona.lmao.ninja/v2/jhucsse/counties')
+				 .then(response => (this.la = _.find(response.data, function(data) { return data.county == "Los Angeles"; } ).stats))
 				 .catch(error => console.log(error));
 		},
 		getStates: function() {
@@ -74,7 +74,11 @@ let app = new Vue({
 	},
 	filters: {
 		formatNumber: function(value) {
-			return Number(value).toLocaleString();
+			if(value != 0) {
+				return Number(value).toLocaleString();
+			} else {
+				return '';
+			}
 		}
 	}
 })
