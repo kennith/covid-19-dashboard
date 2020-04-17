@@ -23,28 +23,28 @@ let app = new Vue({
 				 .catch(error => console.log(error));
 		},
 		getStates: function() {
-			axios.get('https://corona.lmao.ninja/countries/usa')
+			axios.get('https://corona.lmao.ninja/v2/countries/usa')
 				.then(response => (this.usa = response.data))
 				.catch(error => console.log(error))
 		},
 		getCaCount: function() {
-			axios.get('https://corona.lmao.ninja/states')
+			axios.get('https://corona.lmao.ninja/v2/states')
 				.then(response => (this.ca = this.parseCaCount(response.data)))
 				.catch(error => console.log(error))
 
 		},
 		getHkCount: function() {
-			axios.get('https://corona.lmao.ninja/countries/Hong%20Kong')
+			axios.get('https://corona.lmao.ninja/v2/countries/Hong%20Kong')
 				.then(response => (this.hk = this.parseLamoCount(response.data)))
 				.catch(error => console.log(error))
 		},
 		getItalyCount: function() {
-			axios.get('https://corona.lmao.ninja/countries/Italy')
+			axios.get('https://corona.lmao.ninja/v2/countries/Italy')
 				.then(response => (this.italy = this.parseLamoCount(response.data)))
 				.catch(error => console.log(error))
 		},
 		getJapanCount: function() {
-			axios.get('https://corona.lmao.ninja/countries/Japan')
+			axios.get('https://corona.lmao.ninja/v2/countries/Japan')
 				.then(response => (this.japan = this.parseLamoCount(response.data)))
 				.catch(error => console.log(error))
 		},
