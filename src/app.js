@@ -8,6 +8,12 @@ let app = new Vue({
 	},
 	created() {
 	},
+	computed: {
+		// test
+		totalCount: function() {
+			return 'totalCount';
+		}
+	},
 	mounted() {
 		this.getStates();
 		this.getCaCount();

@@ -41,7 +41,7 @@
 				<td class="text-right">{{ la.critical }}</td>
 				<td class="text-right">{{ la.recovered | formatNumber }}</td>
 				<td class="text-right">{{ la.deaths | formatNumber }}</td>
-				<td class="text-right"></td>
+				<td class="text-right">{{ la.confirmed + la.deaths | formatNumber }}</td>
 			</tr>
 			<tr>
 				<td>🇭🇰 Hong Kong</td>
